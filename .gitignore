@@ -1,0 +1,7 @@
+.cache
+.classpath
+.project
+nohup.out
+project/project/
+project/target/
+target/
