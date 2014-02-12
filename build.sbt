@@ -15,6 +15,7 @@ libraryDependencies ++= {
   val akkaModules = Seq("contrib", "cluster", "agent", "remote", "persistence-experimental")
   Seq(
     "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.7",
+    "org.scala-stm" %% "scala-stm" % "0.7",
     "com.github.ddevore" %% "akka-persistence-mongo-casbah" % "0.3-SNAPSHOT",
     // "com.google.protobuf" % "protobuf-java" % "2.5.0",
     // "org.scala-lang" %% "scala-pickling" % "0.8.0-SNAPSHOT",
