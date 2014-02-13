@@ -9,6 +9,6 @@ class CoreView extends View with ActorLogging {
   println("core view created")
 
   def receive = {
-    case p @ Persistent(payload, _) =>
+    case p @ Persistent(payload, _) => println("view catch up event: " + payload)
   }
 }

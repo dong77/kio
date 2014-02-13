@@ -24,17 +24,17 @@ object kioApp extends App {
 
   Thread.sleep(2000)
 
-  //coreProcessorRouter ! AddUser(User(id = "u001", name = "User 1"))
-  //coreProcessorRouter ! AddUser(User(id = "u002", name = "User 2"))
+  coreProcessorRouter ! AddUser(User(id = "u001", name = "User 1"))
+  coreProcessorRouter ! AddUser(User(id = "u002", name = "User 2"))
 
-  //coreProcessorRouter ! Deposit("u001", 123.01)
+  coreProcessorRouter ! Deposit("u001", 123.01)
 
-  //coreProcessorRouter ! Withdraw("u001", 11.01)
+  coreProcessorRouter ! Withdraw("u001", 11.01)
 
-  //coreProcessorRouter ! CreateVoucher("u001", 50)
-  //coreProcessorRouter ! "dump"
+  coreProcessorRouter ! CreateVoucher("u001", 50)
+  coreProcessorRouter ! "dump"
 
-//  coreProcessorRouter ! TransferVoucher(100, "u001")
+  coreProcessorRouter ! TransferVoucher(100, "u001")
 
   coreProcessorRouter ! CashoutVoucher(100)
   
