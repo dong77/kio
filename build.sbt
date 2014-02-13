@@ -4,7 +4,7 @@ name := "kio"
 
 version := "1.0"
 
-fork := true
+//fork := true
 
 scalaVersion := "2.10.3"
 

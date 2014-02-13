@@ -38,7 +38,7 @@ class CoreState {
   var nextVoucherId = 100L
 
   override def toString = {
-    users.mkString("Users:\n\n\t", "\n\t", "\n\t") +
+    users.mkString("\tUsers:\n\n\t", "\n\t", "\n\t") +
       accounts.mkString("Accounts:\n\n\t", "\n\t", "\n\t") +
       vouchers.mkString("Vouchers:\n\n\t", "\n\t", "\n\t") +
       userVouchers.mkString("User Vouchers:\n\n\t", "\n\t", "\n\t") +
