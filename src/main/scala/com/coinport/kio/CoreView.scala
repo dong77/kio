@@ -8,7 +8,7 @@ case class GetBalance(id: Long)
 
 class CoreView extends View with ActorLogging {
   override def processorId = "kio_core_processor"
-  println("core view created:" + self.path)
+  println("--------------core view created:" + self.path)
 
   def receive = {
     case x: GetBalance => println("view received: " + x)
