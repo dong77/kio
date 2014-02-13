@@ -22,7 +22,7 @@ object kioApp extends App {
   val coreProcessorRouter = system.actorOf(FromConfig.props(Props.empty), name = "coreProcessorRouter")
   val coreViewRouter = system.actorOf(FromConfig.props(Props.empty), name = "coreViewRouter")
 
-  Thread.sleep(2000)
+  Thread.sleep(5000)
 
   coreProcessorRouter ! AddUser(User(id = "u001", name = "User 1"))
   coreProcessorRouter ! AddUser(User(id = "u002", name = "User 2"))
@@ -39,5 +39,4 @@ object kioApp extends App {
   coreProcessorRouter ! CashoutVoucher(100)
   
   coreProcessorRouter ! "dump"
-
 }
