@@ -5,6 +5,7 @@ import akka.actor._
 import com.typesafe.config.ConfigFactory
 import akka.cluster.ClusterEvent._
 import akka.routing.FromConfig
+import akka.contrib.pattern.ClusterSingletonManager
 
 object kioApp extends App {
   val config = ConfigFactory.parseString("akka.remote.netty.tcp.port=" + args(0)).
@@ -13,14 +14,20 @@ object kioApp extends App {
   val system = ActorSystem("kio", config)
   val cluster = Cluster(system)
 
-  system.actorOf(Props(new RoleSingletonManager("normal", Props(classOf[CoreProcessor]))), "coreProcessor")
+  val coreProcessorRouter = system.actorOf(FromConfig.props(Props.empty), name = "coreProcessorRouter")
+  val coreViewRouter = system.actorOf(FromConfig.props(Props.empty), name = "coreViewRouter")
+
+  system.actorOf(ClusterSingletonManager.props(
+    singletonProps = Props(classOf[CoreProcessor]),
+    singletonName = "coreProcessor",
+    terminationMessage = PoisonPill,
+    role = Some("normal")),
+    name = "singleton")
 
   if (cluster.selfRoles.contains("normal")) {
     system.actorOf(Props(classOf[CoreView]), "coreView")
   }
 
-  val coreProcessorRouter = system.actorOf(FromConfig.props(Props.empty), name = "coreProcessorRouter")
-  val coreViewRouter = system.actorOf(FromConfig.props(Props.empty), name = "coreViewRouter")
 
   Thread.sleep(5000)
 
@@ -37,6 +44,14 @@ object kioApp extends App {
   coreProcessorRouter ! TransferVoucher(100, "u001")
 
   coreProcessorRouter ! CashoutVoucher(100)
-  
+
   coreProcessorRouter ! "dump"
+
+  (1 to 100000) foreach { i =>
+    coreViewRouter ! GetBalance(i)
+
+    coreProcessorRouter ! "dump"
+    Thread.sleep(2000)
+  }
+
 }
