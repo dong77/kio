@@ -14,7 +14,15 @@ sbt publishLocal
 
 `./mongod`
 
-在kio.conf中，配置了mongodb的数据库和collection名称，默认是：
+然后checkout这个repo：
+
+```
+git clone https://github.com/dong77/kio
+cd kio
+git checkout eventsourcing-demo
+```
+
+在src/main/resources/kio.conf中，配置了mongodb的数据库和collection名称，默认是：
 
 `casbah-journal.mongo-url = "mongodb://127.0.0.1:27017/kio.journals"`
 

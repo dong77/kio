@@ -48,7 +48,7 @@ class CoreState {
 
 class CoreProcessor extends EventsourcedProcessor with ActorLogging {
   override def processorId = "kio_core_processor"
-  println("core processor created")
+  println("============core processor created: " + self.path)
 
   val rand = new Random
   var state = new CoreState
