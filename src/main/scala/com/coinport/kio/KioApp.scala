@@ -21,10 +21,10 @@ object kioApp extends App {
     singletonProps = Props(classOf[CoreProcessor]),
     singletonName = "coreProcessor",
     terminationMessage = PoisonPill,
-    role = Some("normal")),
+    role = Some("core_processor")),
     name = "singleton")
 
-  if (cluster.selfRoles.contains("normal")) {
+  if (cluster.selfRoles.contains("core_view")) {
     system.actorOf(Props(classOf[CoreView]), "coreView")
   }
 
