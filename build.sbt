@@ -10,10 +10,13 @@ scalaVersion := "2.10.3"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
+resolvers += "spray" at "http://repo.spray.io/"
+
 libraryDependencies ++= {
-  val akkaVersion = "2.3.0-RC1"
+  val akkaVersion = "2.3.0-RC3"
   val akkaModules = Seq("contrib", "cluster", "agent", "remote", "persistence-experimental")
   Seq(
+    "io.spray" %%  "spray-json" % "1.2.5",
     "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.7",
     "org.scala-stm" %% "scala-stm" % "0.7",
     "com.github.ddevore" %% "akka-persistence-mongo-casbah" % "0.3-SNAPSHOT",
